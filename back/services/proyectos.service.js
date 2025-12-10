@@ -5,6 +5,8 @@ export async function getTodosProyectos(){
     return await db.collection('Projects').find({}).toArray()
 }
 
+
+
 const client = new MongoClient("mongodb+srv://admin:admin@dwn4ap.jj397vb.mongodb.net");
 const db = client.db("AH2023CP1");
 

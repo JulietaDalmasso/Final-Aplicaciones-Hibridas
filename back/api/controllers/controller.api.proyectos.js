@@ -14,6 +14,9 @@ export async function getProyectos(req, res){
     }
 }
 
+
+
+
 export async function getProyecto(req, res){
     try{
         const id = req.params.id

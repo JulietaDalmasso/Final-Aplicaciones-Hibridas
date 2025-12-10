@@ -1,0 +1,108 @@
+.proyectos-main {
+  padding-top: 2rem;
+  margin-top: 0rem; /* ya no lo subimos de más */
+}
+
+  
+  .proyectos-container {
+    max-width: 1200px;
+    margin: 0 auto;        
+    padding-left: 2rem;   
+    padding-right: 2rem;   
+  }
+  
+  /* TÍTULO */
+  .proyectos-header {
+    margin: 0 0 1.2rem 0;
+    padding: 0;
+  }
+  
+  .proyectos-header h1 {
+    margin: 0 0 1rem 0;
+  }
+  
+  
+  
+  /*  FILTROS  */
+  .filtros-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    color: #e5e7eb;
+    margin-bottom: 2rem;
+  }
+  
+  /* Filtro Título */
+  .filtro-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  
+  .filtro-titulo select {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    background-color: #171717;
+    color: #e5e7eb;
+    border: 1px solid #333;
+    outline: none;
+  }
+  
+  /* Filtro Tecnologías */
+  .filtro-tecnologias span {
+    font-size: 0.9rem;
+  }
+  
+  .chips-container {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  /* CHIP MINIMALISTA */
+  .chip {
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid #444;
+    background-color: transparent;
+    color: #e5e7eb;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .chip:hover {
+    border-color: #aaa;
+  }
+  
+  .chip-activa {
+    background-color: #a78bfa33;
+    border-color: #a78bfa;
+    color: #ede9fe;
+  }
+  
+  /* Botón limpiar */
+  .btn-limpiar {
+    width: fit-content;
+    padding: 0.35rem 0.9rem;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid #444;
+    color: #d1d5db;
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  
+  .btn-limpiar:hover {
+    border-color: #aaa;
+    color: #fff;
+  }
+  
+  /* Mensaje sin resultados */
+  .no-resultados {
+    text-align: center;
+    color: #aaa;
+    grid-column: 1 / -1;
+  }
+  
