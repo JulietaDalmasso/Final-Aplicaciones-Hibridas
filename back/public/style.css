@@ -1,0 +1,365 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d0d0d;
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HEADER (Home y Proyectos) */
+header,
+.proyectos-header {
+    background-color: #111111;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1,
+.proyectos-header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #fff;
+}
+
+nav ul,
+.proyectos-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a,
+.proyectos-links a {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+.proyectos-links a:hover {
+    color: #5a5890;
+}
+
+/* secciones */
+.hero {
+    text-align: center;
+    margin: 40px 0;
+}
+
+
+.hero img {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.content {
+    text-align: center;
+    margin-top: -30px;
+}
+
+.content h3 {
+    margin-bottom: 10px;
+}
+
+.content h3:hover {
+    color: #706fa1;
+}
+
+
+
+/* grid de proyectos */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.actions a {
+    margin-right: 10px;
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.actions a:hover {
+    color: #888;
+}
+
+/* detalle */
+.detail {
+    padding: 20px;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.detail h1 {
+    margin-bottom: 15px;
+}
+
+/* footer */
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 15px;
+    background-color: #111;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+
+/*Formularios */
+form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background-color: #2a2a2a;
+    color: #f5f5f5;
+    font-size: 1rem;
+}
+
+form input[type="text"]::placeholder {
+    color: #ffffff;
+}
+
+form input[type="submit"] {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-color: #706fa1;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #706fa1;
+}
+
+
+/*Vista Detalle del Proyecto */
+.detail {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.detail h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #f5f5f5;
+}
+
+.detail p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.detail strong {
+    color: #fff;
+}
+
+/*Ver Proyecto */
+.detail a[href*="http"] {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background-color: #5a5890;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 9px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.detail a[href*="http"]:hover {
+    background-color: #9b9b9b;
+}
+
+/* Link Volver */
+.detail a[href="/productos"] {
+    display: inline-block;
+    margin-top: 20px;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.detail a[href="/productos"]:hover {
+    color: #757575;
+    text-decoration: underline;
+}
+
+/* Eliminar Proyecto*/
+.delete {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.delete h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff9f9;
+}
+
+.delete div {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+/* Botón eliminar */
+.delete input[type="submit"] {
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    background-color: #706fa1;
+    cursor: pointer;
+}
+
+.delete input[type="submit"]:hover {
+    background-color: #5a5890;
+}
+
+
+/* Link volver */
+.delete a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.delete a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.card img {
+    max-width: 250px;   
+    height: auto;       
+    border-radius: 6px; 
+    display: block;     
+    margin: 0 auto 10px; 
+  }
+  
+  .imagenProyectoDetalle img {
+    max-width: 400px;   
+    width: 100%;  
+    height: auto;     
+    display: block;
+    margin: 0 auto 20px; 
+    border-radius: 8px; 
+  }
+  
+
+  /* BotonNuevo Proyecto */
+.nuevo-proyecto-btn {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .nuevo-proyecto-btn a {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #706fa1;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nuevo-proyecto-btn a:hover {
+    background-color: #5a5890;
+  }
+
+  /* Detalle de proyectos */
+
+  .detail {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  }
+  
+  .detail h1 {
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  .detail p {
+    margin-bottom: 10px;
+    color: #ddd;
+  }
+  
+  .detail a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  
+  .detail a:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+  
+  .detail-img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+  }
+  

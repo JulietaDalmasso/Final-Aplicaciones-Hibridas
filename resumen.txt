@@ -1,0 +1,38 @@
+el useState es un HOOK (estado), lo que hace es retornar un array con dos valores
+
+    [VALOR1, VALOR2]
+
+el valor1 --> una variable
+el valor2 --> una funcion que permite cambiar el valor de esa variable
+
+cuando hago el = useState() --> en los parentesis recibe como quiero que se inicialice la variable 
+
+esto se utiliza para renderizar un valor *cambiante* en pantalla 
+
+--------
+
+useEffect 
+
+es otro hook de React. Recibe una funcion y un array.
+La funcion que recibe se ejecutara cuando se renderice el componente por primera vez 
+
+
+-------
+con useEffect podemos manejar los:
+Ciclo de vida de los componentes
+
+1. componentDidMount --> montaje o creacion. Es el que se ejecuta cuando ponemos algo dentro de la funcion que recibe useEffect, ya que la ejecuta apenas se renderiza el componente 
+2. componentDidUpdate --> cuando se actualiza. Esto lo podemos colocar en los corchetes que recibe el hook 
+3. componentDidUnmount --> cuando muere, lo seteamos en un return 
+
+ejemplo--
+
+useEffect( () => {
+    setPersonajes(JSON.parse(localStorage.getItem('personajes')))
+
+    return () => {
+
+    }
+    
+}, [personajes])
+
