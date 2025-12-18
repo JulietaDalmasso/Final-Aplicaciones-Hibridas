@@ -4,7 +4,7 @@ export async function getProyectos(req, res) {
     try {
       const { title, tecnologia } = req.query
   
-      // vamos a armar condiciones flexibles
+      // condiciones flexibles
       const condiciones = []
   
       // Filtro por título: busca en title O en nombre
@@ -151,6 +151,7 @@ export async function invitarColaborador(req, res) {
   }
 }
 
+//eliminar colaborador
 export async function eliminarColaborador(req, res) {
   try {
     const usuarioId = req.usuario._id
@@ -165,3 +166,4 @@ export async function eliminarColaborador(req, res) {
     return res.status(400).json({ message: error.message })
   }
 }
+

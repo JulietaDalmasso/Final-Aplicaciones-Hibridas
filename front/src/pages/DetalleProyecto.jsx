@@ -7,6 +7,7 @@ const DetalleProyecto = () => {
   const { id } = useParams()
   const [proyecto, setProyecto] = useState(null)
 
+  //estado para email a invitar y para mensajes
   const [emailInvitar, setEmailInvitar] = useState('')
   const [mensaje, setMensaje] = useState(null)
 
@@ -32,6 +33,7 @@ const DetalleProyecto = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, token])
 
+//funcion para invitar 
   async function invitarColaborador() {
     setMensaje(null)
 
@@ -47,7 +49,7 @@ const DetalleProyecto = () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ email: emailInvitar }),
+        body: JSON.stringify({ email: emailInvitar }), //Envía el email en JSON
       })
 
       const data = await res.json()
@@ -59,6 +61,7 @@ const DetalleProyecto = () => {
     }
   }
 
+//funcion para eliminar collab
   async function eliminarColaborador(email) {
     setMensaje(null)
 
@@ -122,7 +125,7 @@ const DetalleProyecto = () => {
 
         <hr className="detail-hr" />
 
-        {/* ===== INVITAR COLABORADOR ===== */}
+        {/* ===== Invitar colaborador ===== */}
         {token && (
           <div className="collab-invite">
             <h3 className="collab-title">Invitar colaborador</h3>
@@ -144,7 +147,7 @@ const DetalleProyecto = () => {
           </div>
         )}
 
-        {/* ===== LISTA DE COLABORADORES ===== */}
+        {/* ===== Lista de colaboradores ===== */}
         <div className="collab-list-wrapper">
           <h4 className="collab-subtitle">Colaboradores</h4>
 

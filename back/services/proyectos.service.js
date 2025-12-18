@@ -49,7 +49,7 @@ export async function eliminarProyecto(id, usuarioId){
   return true
 }
 
-//inivtar a poryecto
+//funcion para inivtar a poryecto
 
 export async function agregarColaborador(id, usuarioId, email) {
   await client.connect()
@@ -70,6 +70,7 @@ export async function agregarColaborador(id, usuarioId, email) {
   return true
 }
 
+//funcion para eliminar del poryecto
 export async function quitarColaborador(id, usuarioId, email) {
   await client.connect()
 

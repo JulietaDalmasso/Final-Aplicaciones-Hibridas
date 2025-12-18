@@ -11,6 +11,7 @@ route.get('/:id', controllers.getProyecto)
 route.put('/:id', validateToken, validateProyecto, controllers.actualizarProyecto)
 route.delete('/:id', validateToken, controllers.borrarProyecto)
 
+//ruta para invitar a colaborador
 route.post('/:id/invitar', validateToken, controllers.invitarColaborador)
 route.delete('/:id/colaboradores/:email', validateToken, controllers.eliminarColaborador)
 
