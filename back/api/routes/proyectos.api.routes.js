@@ -5,11 +5,13 @@ import { validateProyecto } from '../../middleware/proyecto.validate.middleware.
 
 const route = Router()
 
-// Solo las rutas que modifican requieren autenticación
 route.get('/', controllers.getProyectos)
 route.post('/', validateToken, validateProyecto, controllers.nuevoProyecto)
 route.get('/:id', controllers.getProyecto)
 route.put('/:id', validateToken, validateProyecto, controllers.actualizarProyecto)
 route.delete('/:id', validateToken, controllers.borrarProyecto)
+
+route.post('/:id/invitar', validateToken, controllers.invitarColaborador)
+route.delete('/:id/colaboradores/:email', validateToken, controllers.eliminarColaborador)
 
 export default route

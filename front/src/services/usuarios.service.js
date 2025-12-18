@@ -1,5 +1,4 @@
-// Servicio frontend: solo consumir la API del backend
-// No debe importar ni usar 'bcrypt' ni 'mongodb'.
+
 
 export async function registrarUsuario(data) {
     const res = await fetch('http://localhost:3333/api/usuarios', {

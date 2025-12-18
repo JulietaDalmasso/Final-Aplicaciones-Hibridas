@@ -5,51 +5,85 @@ import { useToken } from '../contexts/session.context'
 import './Proyectos.css'
 
 function extraerTecnologias(proyecto) {
+  let raw = []
+
   if (Array.isArray(proyecto.tecnologias)) {
-    return proyecto.tecnologias.map(t => String(t).trim()).filter(Boolean)
+    raw = proyecto.tecnologias
+  } else if (typeof proyecto.tecnologias === "string") {
+    raw = proyecto.tecnologias.split(',')
+  } else if (typeof proyecto.tecnologia === "string") {
+    raw = proyecto.tecnologia.split(',')
   }
-  if (proyecto.tecnologias) {
-    return String(proyecto.tecnologias)
-      .split(',')
-      .map(t => t.trim())
-      .filter(Boolean)
-  }
-  if (proyecto.tecnologia) {
-    return String(proyecto.tecnologia)
-      .split(',')
-      .map(t => t.trim())
-      .filter(Boolean)
-  }
-  return []
+
+  return raw
+    .map(t => String(t).trim())  
+    .filter(t => t.length > 0)   
+    .map(t => t.replace(/,+$/, '')) 
 }
 
+
 const Proyectos = () => {
-  const [proyectos, setProyectos] = useState([])
+  const [proyectos, setProyectos] = useState([])            // lista filtrada 
+  const [proyectosBase, setProyectosBase] = useState([])    // todos los proyectos 
   const [tecnologiasDisponibles, setTecnologiasDisponibles] = useState([])
   const [tecnologiasSeleccionadas, setTecnologiasSeleccionadas] = useState([])
   const [filtroTitulo, setFiltroTitulo] = useState('')
   const token = useToken()
 
+  // Cargar todos los proyectos una sola vez para construir filtros
   useEffect(() => {
-    async function cargar() {
+    async function cargarBase() {
       try {
-        const data = await fetchProyectos(token)
-        if (!Array.isArray(data)) return setProyectos([])
+        const data = await fetchProyectos(token) // sin filtros
+        if (!Array.isArray(data)) {
+          setProyectosBase([])
+          setTecnologiasDisponibles([])
+          return
+        }
 
-        setProyectos(data)
+        setProyectosBase(data)
 
         const allTechs = new Set()
         data.forEach(p => {
           extraerTecnologias(p).forEach(t => allTechs.add(t))
         })
-
         setTecnologiasDisponibles([...allTechs])
+      } catch (e) {
+        setProyectosBase([])
+        setTecnologiasDisponibles([])
+      }
+    }
+    if (token !== undefined) {
+      cargarBase()
+    }
+  }, [token])
+
+  // Cargar proyectos filtraods desde el back cada vez que cambian filtros
+  useEffect(() => {
+    async function cargarFiltrados() {
+      try {
+        const filtros = {}
+
+        if (filtroTitulo) filtros.title = filtroTitulo
+        if (tecnologiasSeleccionadas.length === 1) {
+          filtros.tecnologia = tecnologiasSeleccionadas[0]
+        }
+
+        const data = await fetchProyectos(token, filtros)
+        if (!Array.isArray(data)) {
+          setProyectos([])
+          return
+        }
+
+        setProyectos(data)
       } catch (e) {
         setProyectos([])
       }
     }
-    cargar()
-  }, [token])
+    if (token !== undefined) {
+      cargarFiltrados()
+    }
+  }, [token, filtroTitulo, tecnologiasSeleccionadas])
 
   const toggleTecnologia = (tec) => {
     setTecnologiasSeleccionadas(prev =>
@@ -64,22 +98,12 @@ const Proyectos = () => {
     setTecnologiasSeleccionadas([])
   }
 
-  const proyectosFiltrados = proyectos.filter(p => {
-    const tecs = extraerTecnologias(p).map(t => t.toLowerCase())
-    const titulo = (p.title || p.nombre || '').toLowerCase()
-
-    if (filtroTitulo && titulo !== filtroTitulo.toLowerCase()) return false
-    if (tecnologiasSeleccionadas.length > 0) {
-      const seleccionadas = tecnologiasSeleccionadas.map(t => t.toLowerCase())
-      const coincide = tecs.some(t => seleccionadas.includes(t))
-      if (!coincide) return false
-    }
-    return true
-  })
+  // ahora proyectosFiltrados es lo que vino del back
+  const proyectosFiltrados = proyectos
 
   const titulosDisponibles = Array.from(
     new Set(
-      proyectos.map(p => p.title || p.nombre).filter(Boolean)
+      proyectosBase.map(p => p.title || p.nombre).filter(Boolean)
     )
   )
 
@@ -103,7 +127,7 @@ const Proyectos = () => {
             >
               <option value="">Todos</option>
               {titulosDisponibles.map(t => (
-                <option key={t} value={t.toLowerCase()}>
+                <option key={t} value={t}>
                   {t}
                 </option>
               ))}

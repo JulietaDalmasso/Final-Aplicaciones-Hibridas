@@ -12,7 +12,11 @@ import DetalleProyecto from './pages/DetalleProyecto.jsx'
 import FormularioNuevoProyecto from './pages/FormularioNuevoProyecto.jsx'
 import FormularioEditarProyecto from './pages/FormularioEditarProyecto.jsx'
 import EliminarProyecto from './pages/EliminarProyecto.jsx'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+
 import { SessionProvider } from './contexts/session.context.jsx'
+import NotFound from './pages/NotFound.jsx'
+
 
 let router = createBrowserRouter([
   {
@@ -26,15 +30,28 @@ let router = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/login', element: <Login /> },
       { path: '/register', element: <Register /> },
+
+      // públicas
       { path: '/proyectos', element: <Proyectos /> },
-      { path: '/proyectos/nuevo', element: <FormularioNuevoProyecto /> },
       { path: '/proyectos/:id', element: <DetalleProyecto /> },
-      { path: '/proyectos/modificar/:id', element: <FormularioEditarProyecto /> },
-      { path: '/proyectos/eliminar/:id', element: <EliminarProyecto /> },
+
+      // rutas protegidas
+      {
+        path: '/proyectos/nuevo',
+        element: <ProtectedRoute element={<FormularioNuevoProyecto />} />,
+      },
+      {
+        path: '/proyectos/modificar/:id',
+        element: <ProtectedRoute element={<FormularioEditarProyecto />} />,
+      },
+      {
+        path: '/proyectos/eliminar/:id',
+        element: <ProtectedRoute element={<EliminarProyecto />} />,
+      },
     ],
   },
   { path: '/admin', element: <div>PANEL ADMIN</div> },
-  { path: '*', element: <div>404</div> },
+  { path: '*', element: <NotFound /> },
 ])
 
 createRoot(document.getElementById('root')).render(

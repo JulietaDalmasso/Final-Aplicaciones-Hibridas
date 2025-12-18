@@ -24,7 +24,7 @@ const Register = () => {
         setErrors([data.message])
         return
       }
-      // Registro exitoso, redirigir al login
+
       navigate('/login')
     } catch (e) {
       setErrors(['No se pudo conectar con el servidor'])

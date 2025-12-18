@@ -17,7 +17,7 @@ export async function login(req,res){
         const usuario = await service.login(validated)
         return res.status(200).json(usuario)
     } catch (error) {
-        console.log("❌ ERROR LOGIN:", error);
+        console.log("ERROR LOGIN:", error);
         return res.status(400).json({ message: error.message, errors: error.errors || [] })
     }
 }
